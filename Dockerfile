@@ -7,6 +7,10 @@ RUN adduser --system --home /var/lib/munin --shell /bin/false --uid 1103 --group
 RUN apt-get update -qq && RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
     apt-get install -y -qq cron munin munin-node nginx wget heirloom-mailx patch spawn-fcgi libcgi-fast-perl
 RUN rm /etc/nginx/sites-enabled/default && mkdir -p /var/cache/munin/www && chown munin:munin /var/cache/munin/www && mkdir -p /var/run/munin && chown -R munin:munin /var/run/munin
+RUN git clone https://github.com/munin-monitoring/contrib.git /tmp/munstrap && \
+   cp -rb /tmp/munstrap/contrib/templates/munstrap/templates /etc/munin && \ 
+   cp -rb /tmp/munstrap/contrib/templates/munstrap/static /etc/munin && \
+   rm -rf /var/www/munin/*
 
 VOLUME /var/lib/munin
 VOLUME /var/log/munin
