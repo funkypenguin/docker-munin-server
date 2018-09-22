@@ -2,6 +2,11 @@ FROM ubuntu:16.04
 
 MAINTAINER Leo Unbekandt <leo@scalingo.com>
 
+# BUILD_DATE and VCS_REF are immaterial, since this is a 2-stage build, but our build
+# hook won't work unless we specify the args
+ARG BUILD_DATE
+ARG VCS_REF
+
 RUN adduser --system --home /var/lib/munin --shell /bin/false --uid 1103 --group munin
 
 RUN apt-get update -qq && RUNLEVEL=1 DEBIAN_FRONTEND=noninteractive \
