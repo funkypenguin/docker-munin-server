@@ -1,6 +1,7 @@
 FROM ubuntu:16.04
 
 MAINTAINER Leo Unbekandt <leo@scalingo.com>
+MAINTAINER David Young <davidy@funkypenguin.co.nz>
 
 # BUILD_DATE and VCS_REF are immaterial, since this is a 2-stage build, but our build
 # hook won't work unless we specify the args
